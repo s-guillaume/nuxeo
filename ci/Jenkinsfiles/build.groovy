@@ -22,9 +22,9 @@ dockerNamespace = 'nuxeo'
 kubernetesNamespace = 'platform'
 repositoryUrl = 'https://github.com/nuxeo/nuxeo'
 testEnvironments = [
-  'dev',
+  // 'dev',
   'mongodb',
-  'postgresql',
+  // 'postgresql',
 ]
 
 properties([
@@ -405,7 +405,8 @@ pipeline {
     KAFKA_CHART_NAME = 'kafka'
     KAFKA_CHART_VERSION = '11.8.8'
     NUXEO_CHART_NAME = 'nuxeo'
-    NUXEO_CHART_VERSION = '~2.0.0'
+    // NUXEO_CHART_VERSION = '~2.0.0'
+    NUXEO_CHART_VERSION = '2.0-PR-28-60'
     USAGE = 'utests'
     TEST_NAMESPACE_PREFIX = "nuxeo-unit-tests-$BRANCH_NAME-$BUILD_NUMBER".toLowerCase()
     TEST_SERVICE_DOMAIN_SUFFIX = 'svc.cluster.local'
@@ -894,11 +895,11 @@ pipeline {
     }
 
     stage('Deploy Server Preview') {
-      when {
-        not {
-          branch 'PR-*'
-        }
-      }
+      // when {
+      //   not {
+      //     branch 'PR-*'
+      //   }
+      // }
       steps {
         setGitHubBuildStatus('server/preview', 'Deploy server preview', 'PENDING')
         container('maven') {
